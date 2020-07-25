@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import {Link} from 'react-router-dom';
 
 const Nav = () => {
 
@@ -18,8 +19,8 @@ const Nav = () => {
 
             <div id="navDropdown" className={`navbar-menu ${menuState.visible?"is-active":""}`}>
                 <div className="navbar-start">
-                    <a className="navbar-item has-text-black">Search</a>
-                    <a className="navbar-item has-text-black">Saved</a>
+                    <Link to="/search" className="navbar-item has-text-black">Search</Link>
+                    <Link to="saved" className="navbar-item has-text-black">Saved</Link>
                 </div>
             </div>
         </nav>

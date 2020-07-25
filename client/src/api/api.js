@@ -10,7 +10,7 @@ const queryApi = (endpoint, options = {}) => {
     })
 }
 
-const getAllBooks = async () => {
+export const getAllBooks = async () => {
     try {
         const books = await queryApi('/api/books/all');
 
@@ -21,7 +21,7 @@ const getAllBooks = async () => {
     }
 }
 
-const getBook = async (query) => {
+export const getBook = async (query) => {
     try {
         const queryResults = await queryApi(`/api/book/${query}`);
         return queryResults;
@@ -30,16 +30,16 @@ const getBook = async (query) => {
     }
 }
 
-const saveBook = async (book) => {
+export const saveBook = async (book) => {
     try {
-        const response = await queryApi('/api/book/add', {method: 'POST', body: book});
+        const response = await queryApi('/api/book/add', {method: 'POST', body: JSON.stringify(book), headers: {'Content-Type': 'application/json'}});
         return response;
     } catch(err) {
         throw err
     }
 }
 
-const deleteBook = async (id) => {
+export const deleteBook = async (id) => {
     try {
         const response = await queryApi(`/api/book/${id}`, {method: 'DELETE'});
         return response;
@@ -48,7 +48,7 @@ const deleteBook = async (id) => {
     }
 }
 
-const deleteAllBooks = async () => {
+export const deleteAllBooks = async () => {
     try {
         const response = await queryApi(`/api/book/all`, {method: 'DELETE'});
         return response
@@ -56,9 +56,3 @@ const deleteAllBooks = async () => {
         throw err
     }
 }
-
-export default getAllBooks;
-export default getBook;
-export default saveBook;
-export default deleteBook;
-export default deleteAllBooks;

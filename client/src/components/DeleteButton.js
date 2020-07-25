@@ -1,12 +1,21 @@
 import React from 'react';
 
-const DeleteButton = ({book}) => {
+import * as API from '../api/api';
+
+const DeleteButton = ({book, refreshPage}) => {
     
     if(!book._id) return null
+
+    const deleteBook = (id) => {
+        API.deleteBook(id).then(results => {
+            console.log(results);
+            refreshPage();
+        })
+    }
     
     return (
-        <a class="level-item">
-            <span class="icon is-small"><i class="fas fa-trash"></i></span>
+        <a className="level-item" onClick={() => deleteBook(book._id)}>
+            <span className="icon is-small"><i className="fas fa-trash"></i></span>
         </a>
     );
 };

@@ -23,6 +23,12 @@ addSavedParameter = (searchArray) => {
     })
 }
 
+const checkSaved = (book) => {
+    return db.Book.find({}).then(savedBooks => {
+        return savedBooks.some(savedBook => savedBook.infoLink === book.infoLink)
+    })
+}
+
 module.exports = {
     getAllHandler: (req, res) => {
         db.Book.find({}).sort({title: "-1"}).then(books => {
@@ -43,10 +49,12 @@ module.exports = {
             res.status(500).json({error: err})
         }
     },
-    saveBookHandler: (req, res) => {
+    saveBookHandler: async (req, res) => {
         const {body} = req;
 
         if(body.saved === true) return res.status(400).json({error: "Book already saved"});
+
+        if(await checkSaved(body)) return res.status(400).json({error: "Book already saved"});
 
         db.Book.create(body).then(results => {
             res.status(200).json(results)
@@ -60,7 +68,7 @@ module.exports = {
         const {id} = req.params;
 
         db.Book.deleteOne({_id: id}).then(result => {
-            res.status(200).json(result)
+            res.status(200).json({success: "Book removed from saved books"})
         }).catch(err => {
             res.status(500).json({error: err});
         })

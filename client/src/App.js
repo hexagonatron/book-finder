@@ -25,6 +25,10 @@ function App() {
             <Search />
           </Route>
 
+          <Route path='/'>
+            <Search />
+          </Route>
+
         </Switch>
       </div>
     </Router>
