@@ -13,7 +13,7 @@ import Search from './pages/Search';
 function App() {
   return (
     <Router>
-      <div className="has-background-grey-darker main-content">
+      <div className="has-background-grey-lighter main-content">
       <Nav />
 
         <Switch>

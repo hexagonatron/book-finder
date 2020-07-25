@@ -5,9 +5,9 @@ const Nav = () => {
     const [menuState, toggleMenuState] = useState({visible: false})
 
     return (
-        <nav className="navbar is-success has-text-black" role="navigation" aria-label="main navigation">
+        <nav className="navbar has-text-black" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                    <h1 className="is-size-3 has-text-weight-medium navbar-item has-text-black">Google Book Search</h1>
+                    <h1 className="is-size-5 has-text-weight-medium navbar-item has-text-black">Google Book Search</h1>
 
                 <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navDropdown" onClick={() => toggleMenuState({visible: !menuState.visible})}>
                     <span aria-hidden="true"></span>
@@ -17,7 +17,7 @@ const Nav = () => {
             </div>
 
             <div id="navDropdown" className={`navbar-menu ${menuState.visible?"is-active":""}`}>
-                <div className="navbar-start has-text-weight-medium">
+                <div className="navbar-start">
                     <a className="navbar-item has-text-black">Search</a>
                     <a className="navbar-item has-text-black">Saved</a>
                 </div>

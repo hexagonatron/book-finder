@@ -11,20 +11,33 @@ const queryGoogleBookAPI = (searchParam) => {
     });
 }
 
+addSavedParameter = (searchArray) => {
+    //Get all saved
+    return db.Book.find({}).then(savedBooks => {
+        const updatedResults = searchArray.map(book => {
+            book.saved = savedBooks.some(savedBook => savedBook.infoLink === book.infoLink)
+            return book;
+        });
+
+        return updatedResults;
+    })
+}
 
 module.exports = {
     getAllHandler: (req, res) => {
         db.Book.find({}).sort({title: "-1"}).then(books => {
             res.status(200).json(books);
         }).catch(err => {
-            res.status(503).json({error: err});
+            res.status(500).json({error: err});
         })
     },
     searchBookHandler: async (req, res) => {
         try {
             const results = await queryGoogleBookAPI(req.params.query);
 
-            res.status(200).json(results)
+            const updatedResults = await addSavedParameter(results)
+
+            res.status(200).json(updatedResults);
 
         } catch(err) {
             res.status(500).json({error: err})
@@ -32,6 +45,8 @@ module.exports = {
     },
     saveBookHandler: (req, res) => {
         const {body} = req;
+
+        if(body.saved === true) return res.status(400).json({error: "Book already saved"});
 
         db.Book.create(body).then(results => {
             res.status(200).json(results)

@@ -8,3 +8,7 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.hero-bg-gradient {
+  background: linear-gradient(to right, #5B86E5, #36D1DC);
+}
