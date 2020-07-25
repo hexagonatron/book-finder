@@ -1,7 +1,7 @@
 # [Google Book Searcher](https://google-booky-searchy.herokuapp.com/)
 ![License](https://img.shields.io/badge/Licence-MIT-blue)
 
-In this project I did thing
+A web app that uses the google books api to search books. A user can then save books which are then persisted to a mongodb instance. Styling provided by the Bulma CSS framework
 
 
 ## Table of Contents 
@@ -12,7 +12,9 @@ In this project I did thing
 
 
 ## Installation
-            
+
+Create a .env file based on the provided .env-example
+
 Use these commands to install this project
 ````
 git clone https://github.com/hexagonatron/book-finder.git
