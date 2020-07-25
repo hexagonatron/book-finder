@@ -1,7 +1,7 @@
 # [Google Book Searcher](https://google-booky-searchy.herokuapp.com/)
 ![License](https://img.shields.io/badge/Licence-MIT-blue)
 
-A web app that uses the google books api to search books. A user can then save books which are then persisted to a mongodb instance. Styling provided by the Bulma CSS framework
+A web app that uses the google books api to search books. A user can then save books which are persisted to a mongodb instance. Styling provided by the Bulma CSS framework
 
 
 ## Table of Contents 
